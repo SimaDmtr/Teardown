@@ -54,8 +54,26 @@
 <body>
     <div class="container animate__animated animate__fadeInDown">
         <h1 class="animate__animated animate__wobble animate__delay-1s">Telegram умер!</h1>
-        <p>Press F. RIP Telegram 😢</p>
-        <button id="closeButton" class="btn btn-lg mt-3"><b>F</b></button>
+        <p>Нажми на кнопку ниже, чтобы выразить своё уважение. RIP Telegram 😢</p>
+        <button id="closeButton" class="btn btn-lg mt-3">Нажми <b>F</b></button>
+    </div>
+
+    <!-- Модальное окно -->
+    <div class="modal fade" id="respectModal" tabindex="-1" aria-labelledby="respectModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="respectModalLabel">Выразить уважение</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Спасибо! Вы выразили своё уважение Telegram. Пусть его чаты живут вечно!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Подключение Bootstrap JS и зависимостей -->
@@ -70,8 +88,9 @@
 
         // Логика нажатия на кнопку "Нажми F"
         document.getElementById('closeButton').addEventListener('click', () => {
-            tg.close(); // Закрыть приложение
-            alert('Вы выразили уважение! F.');
+            // Показать модальное окно Bootstrap
+            let respectModal = new bootstrap.Modal(document.getElementById('respectModal'));
+            respectModal.show();
         });
     </script>
 </body>
