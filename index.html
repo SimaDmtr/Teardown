@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,20 +40,22 @@
         }
         #closeButton {
             font-weight: 500;
-            background-color: #007bff;
+            background-color: #ff4b5c;
             color: white;
             border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
         }
         #closeButton:hover {
-            background-color: #0056b3;
+            background-color: #ff6b7d;
         }
     </style>
 </head>
 <body>
     <div class="container animate__animated animate__fadeInDown">
-        <h1 class="animate__animated animate__heartBeat animate__delay-1s">Привет, Telegram!</h1>
-        <p>Добро пожаловать в наше мини-приложение. Нажмите на кнопку ниже, чтобы закрыть приложение.</p>
-        <button id="closeButton" class="btn btn-primary btn-lg mt-3">Закрыть приложение</button>
+        <h1 class="animate__animated animate__wobble animate__delay-1s">Telegram умер!</h1>
+        <p>Press F. RIP Telegram 😢</p>
+        <button id="closeButton" class="btn btn-lg mt-3"><b>F</b></button>
     </div>
 
     <!-- Подключение Bootstrap JS и зависимостей -->
@@ -66,9 +68,10 @@
         // Инициализация мини-приложения Telegram
         let tg = window.Telegram.WebApp;
 
-        // Логика нажатия на кнопку закрытия
+        // Логика нажатия на кнопку "Нажми F"
         document.getElementById('closeButton').addEventListener('click', () => {
             tg.close(); // Закрыть приложение
+            alert('Вы выразили уважение! F.');
         });
     </script>
 </body>
