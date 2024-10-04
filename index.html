@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Сосал?</title>
-    <!-- Bootstrap CSS для стилизации кнопок -->
+    <!-- Bootstrap CSS для стилизации кнопок и модального окна -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body, html {
@@ -12,16 +12,21 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Arial', sans-serif;
             background-color: #f8f9fa;
             margin: 0;
         }
         .container {
             text-align: center;
+            margin-top: 20px;
         }
         h1 {
             margin-bottom: 30px;
             font-size: 36px;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Добавляем расстояние между кнопками */
         }
         #noBtn {
             position: absolute;
@@ -32,33 +37,58 @@
 <body>
     <div class="container">
         <h1>Сосал?</h1>
-        <div>
+        <div class="btn-container">
             <button id="yesBtn" class="btn btn-success btn-lg">Да</button>
             <button id="noBtn" class="btn btn-danger btn-lg">Нет</button>
         </div>
     </div>
 
-    <!-- JavaScript для анимации кнопки -->
+    <!-- Модальное окно -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ответ принят!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Тебе не место в клане.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подключение Bootstrap JS и зависимостей -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript для логики кнопок -->
     <script>
+        const yesBtn = document.getElementById("yesBtn");
         const noBtn = document.getElementById("noBtn");
 
         // Функция для перемещения кнопки "Нет" в случайное место
         function moveButton() {
-            // Получаем размеры окна
             const windowWidth = window.innerWidth;
             const windowHeight = window.innerHeight;
 
-            // Вычисляем случайные координаты, чтобы кнопка не выходила за границы окна
             const randomX = Math.floor(Math.random() * (windowWidth - noBtn.clientWidth));
             const randomY = Math.floor(Math.random() * (windowHeight - noBtn.clientHeight));
 
-            // Устанавливаем новые координаты кнопки
             noBtn.style.left = randomX + "px";
             noBtn.style.top = randomY + "px";
         }
 
-        // Добавляем обработчик события при наведении на кнопку
+        // Обработчик наведения на кнопку "Нет"
         noBtn.addEventListener("mouseover", moveButton);
+
+        // Обработчик нажатия на кнопку "Да"
+        yesBtn.addEventListener("click", () => {
+            const modal = new bootstrap.Modal(document.getElementById('myModal'));
+            modal.show();
+        });
     </script>
 </body>
 </html>
